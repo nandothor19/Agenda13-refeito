@@ -16,8 +16,6 @@ $r = $formacao->inserirBD();
 return $r;
 }
 
-
-
 public function remover($id) {
 require_once '../Model/FormacaoAcad.php';
 $formacao = new FormacaoAcad();
@@ -25,16 +23,11 @@ $r = $formacao->excluirBD($id);
 return $r;
 }
 
-
-
 public function gerarLista($idusuario)
 {
 require_once '../Model/FormacaoAcad.php';
 $formacao = new FormacaoAcad();
 return $results = $formacao->listaFormacoes($idusuario);
 }
-
-
-
-
-}?>
+}
+?>

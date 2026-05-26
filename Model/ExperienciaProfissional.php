@@ -49,7 +49,7 @@ public function setDescricao($descricao) {
  $this->descricao = $descricao;
 }
 public function getDescricao() {
-return $this->desc;
+return $this->descricao;
 }
 
                                     //------InserirBD------//

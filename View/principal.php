@@ -32,7 +32,7 @@ font-family: "Montserrat", sans-serif
 <body class="w3-light-grey">
     
 <?php
-include_once '../Controller/FormacaoAcadController.php';
+include_once '../Controller/formacaoAcadController.php';
 if(!isset($_SESSION))
 {
 session_start();
@@ -49,7 +49,7 @@ session_start();
         <i class="fa fa-address-book-o w3-xxlarge"></i>
         <p>Dados Pessoais</p>
     </a>
-    <a href="#outrasFormacoes" class="w3-bar-item w3-button w3-padding-large w3-hover-light-grey w3-hover-text-cyan">
+    <a href="#Oformacao" class="w3-bar-item w3-button w3-padding-large w3-hover-light-grey w3-hover-text-cyan">
         <i class="fa fa-folder w3-xxlarge"></i>
         <p>Outras Formações</p>
         </a>
@@ -57,6 +57,10 @@ session_start();
         <i class="fa fa-mortar-board w3-xxlarge"></i>
         <p>Formação</p>
     </a>
+    <a href="#eProfissional" class="w3-bar-item w3-button w3-padding-large w3-hover-light-grey w3-hover-text-cyan">
+            <i class="fa fa-user w3-xxlarge"></i>
+            <p>Experiência</p>
+        </a>
 </nav>
     <!-----------------------------------------------CAMPO SISTEMAS DE CURRÍCULOS--------------------------------------->
 <div class="w3-padding-large" id="main">
@@ -74,7 +78,7 @@ session_start();
     <!--==================DADOS PESSOAIS============================-->
             <div class="w3-padding-64 w3-content w3-text-grey" id="dPessoais">
             <h2 class="w3-text-cyan">Dados Pessoais</h2>
-            <form action="/Controller/Navegacao.php" method="post" class="w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
+            <form action="Controller/Navegacao.php" method="post" class="w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
                 <input class="w3-input w3-border w3-round-large" name="txtID" type="hidden" value="<?php echo unserialize($_SESSION['Usuario'])->getID();?>">
                 <!-- NOME -->
                 <div class="w3-row w3-section">
@@ -123,10 +127,10 @@ session_start();
             </form>
         </div>
 
-    <!----- Outras Formações ----->
+    <!-----===============================================Outras Formações============================================================= ----->
         <div class="w3-padding-64 w3-content w3-text-grey" id="Oformacao">
             <h2 class="w3-text-cyan">Outras Formações</h2>
-            <form action="/Controller/Navegacao.php" method="post"
+            <form action="Controller/Navegacao.php" method="post"
                 class="w3-row w3-light-grey w3-text-blue w3-margin"
                 style="width:70%;">
                 <div class="w3-row w3-center">
@@ -202,7 +206,7 @@ session_start();
                         <!--========================FORMAÇÃO================================-->
     <div class="w3-padding-128 w3-content w3-text-grey" id="formacao">
 <h2 class="w3-text-cyan">Formação</h2>
-<form action="/Controller/Navegacao.php" method="post" class=" w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
+<form action="Controller/Navegacao.php" method="post" class=" w3-row w3-light-grey w3-text-blue w3-margin" style="width:70%;">
 <div class="w3-row w3-center">
 <div class="w3-col" style="width:50%;">
 Data Inicial
@@ -272,7 +276,7 @@ echo '<td style="width: 10%;">'.$row->inicio.'</td>';
 echo '<td style="width: 10%;">'.$row->fim.'</td>';
 echo '<td style="width: 65%;">'.$row->descricao.'</td>';
 echo '<td style="width: 5%;">
-<form action="/Controller/Navegacao.php" method="post">
+<form action="Controller/Navegacao.php" method="post">
 <input type="hidden" name="id" value="'.$row->idformacaoAcademica.'">
 <button name="btnExcluirFA" class="w3-button w3-block w3-blue w3-cell w3-round-large">
 <i class="fa fa-user-times"></i> </button></td>
@@ -359,8 +363,9 @@ w3-round-large" style="width: 20%;">
 </tr>
 <thead>
 <?php
-$ePro = new ExperienciaProfissionalController();
-$results = $ePro->gerarLista(unserialize($_SESSION['Usuario'])->getID());
+require_once '../Controller/ExperienciaProfissionalController.php';
+$eCon = new ExperienciaProfissionalController();
+$results = $eCon->gerarLista(unserialize($_SESSION['Usuario'])->getID());
 if($results != null)
 while($row = $results->fetch_object()) {
 echo '<tr>';
@@ -369,7 +374,7 @@ echo '<td style="width: 10%;">'.$row->fim.'</td>';
 echo '<td style="width: 10%;">'.$row->empresa.'</td>';
 echo '<td style="width: 65%;">'.$row->descricao.'</td>';
 echo '<td style="width: 5%;">
-<form action="../Controller/Navegacao.php" method="post">
+<form action="Controller/Navegacao.php" method="post">
 <input type="hidden" name="idEP" value="'.$row->idexperienciaprofissional.'">
 <button name="btnExcluirEP" class="w3-button w3-block w3-blue
 w3-cell w3-round-large">

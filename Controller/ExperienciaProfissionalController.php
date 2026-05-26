@@ -15,12 +15,14 @@ $expP->setIdUsuario($idusuario);
 $r = $expP->inserirBD();
 return $r;
 }
+
 public function remover($id) {
 require_once '../Model/ExperienciaProfissional.php';
 $expP = new ExperienciaProfissional();
 $r = $expP->excluirBD($id);
 return $r;
 }
+
 public function gerarLista($idusuario)
 {
 require_once '../Model/ExperienciaProfissional.php';

@@ -13,7 +13,7 @@
 <div class="w3-row w3-section">
 <div>
 <button name="btnCadNRealizado" class="w3-button w3-block w3-margin w3-blue w3-cell
-w3round-large" style="width: 90%;">
+w3 round-large" style="width: 90%;">
 Cadastro Não Realizado
 </button>
 </div>

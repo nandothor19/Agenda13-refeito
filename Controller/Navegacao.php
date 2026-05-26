@@ -1,4 +1,5 @@
 <?php
+
 if(!isset($_SESSION))
 {
 session_start();
@@ -10,7 +11,7 @@ session_start();
 <?php
 switch ($_POST) {
 //--===============================Caso a variavel seja nula mostrar tela de login--================================//
-case isset($_POST[null]):
+case isset($_POST["null"]):
 include_once "View/login.php";
 break;
 //---=============================================Primeiro Acesso=======================================--//
@@ -42,7 +43,7 @@ break;
 
     //--Cadastro Não Realizado--//
     case isset($_POST["btnCadNRealizado"]):
-        include_once "../View/primeiroAcesso.php";
+        include_once "/View/primeiroAcesso.php";
         break;	
 
 //--==================================Atualizar=============================================--//
@@ -149,7 +150,7 @@ case isset($_POST["btnLoginADM"]):
  require_once '../Controller/AdministradorController.php';
  $aController = new AdministradorController();
  if($aController->login($_POST['txtLoginADM'], $_POST['txtSenhaADM'])) {
- include_once '../View/ADMPrincipal.php';
+ include_once 'View/ADMPrincipal.php';
  } else {
     include_once "../View/cadastroNaoRealizado.php";
  }
@@ -171,7 +172,7 @@ break;
 
 
 //============================================= VOLTAR ADM ===================================================//
-case(isset($_POST[“btnVoltar”])):
+case(isset($_POST["btnVoltar"])):
 {
 include_once '/View/ADMPrincipal.php';
 } 
