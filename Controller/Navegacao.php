@@ -150,7 +150,7 @@ case isset($_POST["btnLoginADM"]):
  require_once '../Controller/AdministradorController.php';
  $aController = new AdministradorController();
  if($aController->login($_POST['txtLoginADM'], $_POST['txtSenhaADM'])) {
- include_once 'View/ADMPrincipal.php';
+ include_once '../View/ADMPrincipal.php';
  } else {
     include_once "../View/cadastroNaoRealizado.php";
  }
