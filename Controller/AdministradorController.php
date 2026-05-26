@@ -9,7 +9,8 @@ class AdministradorController{
  require_once '../Model/Administrador.php';
  $administrador = new Administrador();
  $administrador->carregarAdministrador($cpf);
- if($administrador->getSenha() == $senha)
+ if($administrador->getSenha() != null &&
+   $administrador->getSenha() == $senha)
  {
  $_SESSION['Administrador'] = serialize($administrador); 
  return true;

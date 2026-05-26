@@ -49,7 +49,7 @@ while($row = $results->fetch_object()) {
 
 
  <div class="w3-padding-128 w3-content w3-text-grey">
-<form action="Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-text-blue
+<form action="../Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-text-blue
 w3-margin w3-center" style="width: 30%;">
  <div class="w3-row w3-section">
  <div>

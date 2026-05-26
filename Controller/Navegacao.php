@@ -4,6 +4,9 @@ if(!isset($_SESSION))
 {
 session_start();
 }
+
+ini_set('display errors', 1);
+error_reporting(E_ALL);
 ?>
 
 
@@ -43,7 +46,7 @@ break;
 
     //--Cadastro Não Realizado--//
     case isset($_POST["btnCadNRealizado"]):
-        include_once "/View/primeiroAcesso.php";
+        include_once "../View/primeiroAcesso.php";
         break;	
 
 //--==================================Atualizar=============================================--//
@@ -80,7 +83,7 @@ break;
 
 //--==============================================Adicionar Formacao=========================================--//
 case isset($_POST["btnAddFormacao"]):
-require_once "../Controller/FormacaoAcadController.php";
+require_once "../Controller/formacaoAcadController.php";
 include_once "../Model/Usuario.php";
 $fController = new FormacaoAcadController();
 if ($fController->inserir(
@@ -128,7 +131,7 @@ unserialize($_SESSION["Usuario"])->getID()
 ) {
 include_once "../View/informacaoInserida.php";
 } else {
-include_once "../View/operacaoNRealizada.php";
+include_once "../View/operacaoNaoRealizada.php";
 }
 break;
 
@@ -140,20 +143,27 @@ $epController = new ExperienciaProfissionalController();
 if ($epController->remover($_POST["idEP"]) == true) {
 include_once "../View/informacaoExcluida.php";
 } else {
-include_once "../View/operacaoNRealizada.php";
+include_once "../View/operacaoNaoRealizada.php";
 }
 break;
 
 
 //============================================ADM LOGIN ===========================================================//
 case isset($_POST["btnLoginADM"]):
- require_once '../Controller/AdministradorController.php';
+ require_once 'AdministradorController.php';
  $aController = new AdministradorController();
  if($aController->login($_POST['txtLoginADM'], $_POST['txtSenhaADM'])) {
  include_once '../View/ADMPrincipal.php';
  } else {
-    include_once "../View/cadastroNaoRealizado.php";
+    include_once "../View/loginInvalido.php";
  }
+break;
+
+//==========================================ADM INVÁLIDO===============================//
+case(isset($_POST["btnLoginInvalido"])):
+{
+include_once '../View/login.php';
+} 
 break;
 
 //============================================ TELA ADM LOGIN ===========================================================//
@@ -174,7 +184,7 @@ break;
 //============================================= VOLTAR ADM ===================================================//
 case(isset($_POST["btnVoltar"])):
 {
-include_once '/View/ADMPrincipal.php';
+include_once '../View/ADMPrincipal.php';
 } 
 break;
 }

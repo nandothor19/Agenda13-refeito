@@ -47,7 +47,7 @@ $adm = new AdministradorController();
  </div>
  </div>
  <div class="w3-padding-128 w3-content w3-text-grey">
- <form action="Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-text-blue w3-margin w3-center" style="width: 30%;">
+ <form action="../Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-text-blue w3-margin w3-center" style="width: 30%;">
  <div class="w3-row w3-section">
  <div>
  <button name="btnVoltar" class="w3-button w3-block w3-margin

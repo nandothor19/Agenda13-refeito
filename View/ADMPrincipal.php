@@ -26,7 +26,7 @@ session_start();
  </h1>
 </header>
 
-<form action="Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-
+<form action="../Controller/Navegacao.php" method="post" class="w3-container w3-light-grey w3-
 text-blue w3-margin w3-center" style="">
  <input type="hidden" name="nome_form" value="frmLoginADM" />
  <button name="btnListarCadastrados" class="w3-button w3-margin w3-blue w3-cell w3-roundlarge" style="">
