@@ -190,7 +190,7 @@ break;
 //============================================= VOLTAR ADM ===================================================//
 case(isset($_POST["btnVoltar"])):
 {
- include_once '../View/ADMLogin.php'; 
+include_once '../View/ADMPrincipal.php'; 
 } 
 break;
 
@@ -199,7 +199,7 @@ break;
 //============================================VOLTAR ADM PRINCIPAL=================================================//
 case(isset($_POST["btnVoltarPrincipal"])):
 {
-include_once '../View/ADMPrincipal.php';
+include_once '../View/ADMListarCadastrados.php';
 } 
 break;
 

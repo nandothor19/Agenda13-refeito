@@ -12,6 +12,7 @@
  </head>
  <body class=”w3-light-grey”>
     <?php
+    include_once '../Controller/Navegacao.php';
 if(!isset($_SESSION))
 {
 session_start();

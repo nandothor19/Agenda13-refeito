@@ -1,15 +1,3 @@
-<?php
-include_once '../Model/Usuario.php';
-if(!isset($_SESSION))
-{
-session_start();
-}
-include_once '../Controller/formacaoAcadController.php';
-if(!isset($_SESSION))
-{
-session_start();
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -33,6 +21,7 @@ font-family: "Montserrat", sans-serif
     
 <?php
 include_once '../Controller/formacaoAcadController.php';
+include_once '../Model/Usuario.php';
 if(!isset($_SESSION))
 {
 session_start();

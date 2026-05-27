@@ -7,7 +7,7 @@ class OutrasFormacoesController{
     
     public function inserir($inicio, $fim, $descricao,$idusuario) {
         require_once '../Model/OutrasFormacoes.php';
-        $formacao = new OutrasFormacoes();
+        $formacao = new OutrasFormacoesController();
         $formacao->setInicio($inicio);
         $formacao->setFim($fim);
         $formacao->setDescricao($descricao); 
@@ -18,14 +18,14 @@ class OutrasFormacoesController{
     }
     public function remover($id) {
         require_once '../Model/OutrasFormacoes.php';
-        $formacao = new OutrasFormacoes();
+        $formacao = new OutrasFormacoesController();
         $r = $formacao->excluirBD($id);
         return $r;     
     }
     public function gerarLista($idusuario)
     {
         require_once '../Model/OutrasFormacoes.php';
-        $formacao = new OutrasFormacoes();
+        $formacao = new OutrasFormacoesController();
         
         return $results = $formacao->listaFormacoes($idusuario);
        
