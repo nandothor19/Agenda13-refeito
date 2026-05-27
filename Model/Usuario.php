@@ -1,91 +1,107 @@
 <?php
-class Usuario {
-private $id;
-private $nome;
-private $cpf;
-private $email;
-private $dataNascimento;
-private $senha;
-
-                        //----Getters and Setters----//
-                                                    //--ID--//
-public function setID($id) {
+class Usuario
+{
+    private $id;
+    private $nome;
+    private $cpf;
+    private $email;
+    private $dataNascimento;
+    private $senha;
+	
+    //ID
+    public function setID($id)
+    {
         $this->id = $id;
     }
-public function getID() {
+    public function getID()
+    {
         return $this->id;
     }
-                                                    //Nome
-public function setNome($nome) {
+    //nome
+    public function setNome($nome)
+    {
         $this->nome = $nome;
     }
-public function getNome() {
+    public function getNome()
+    {
         return $this->nome;
     }
-                                                    //CPF
-public function setCPF($cpf) {
+    //cpf
+    public function setCPF($cpf)
+    {
         $this->cpf = $cpf;
     }
-public function getCPF() {
+    public function getCPF()
+    {
         return $this->cpf;
     }
-                                                    //Email
-public function setEmail($email) {
+    //Email
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
-public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
-                                                    //Data de nascimento
-public function setDataNascimento($dataNascimento) {
+    //Data de nascimento
+    public function setDataNascimento($dataNascimento)
+    {
         $this->dataNascimento = $dataNascimento;
     }
-public function getDataNascimento() {
+    public function getDataNascimento()
+    {
         return $this->dataNascimento;
     }
-                                                    // Senha
-public function setSenha($senha) {
+    // Senha
+    public function setSenha($senha)
+    {
         $this->senha = $senha;
     }
-public function getSenha() {
+    public function getSenha()
+    {
         return $this->senha;
     }
 
-                                                    //------InserirDB------//
-public function inserirBD() {
-    require_once 'ConexaoBD.php';
-        $con = new ConexaoBD();
-        $conn = $con->conectar();
-    if ($conn->connect_error) 
+    public function inserirBD()
     {
-        die("Connection failed: " . $conn->connect_error);
-    }
-        $sql = "INSERT INTO usuario (nome, cpf, email, senha)VALUES ('".$this->nome."', '".$this->cpf."', '".$this->email."','".$this->senha."')";
-    if ($conn->query($sql) === TRUE) 
-    {
-        $this->id = mysqli_insert_id($conn);
-        $conn->close();
-    return TRUE;
-    } else 
-        {
-        $conn->close();
-    return FALSE;
-        }
-    } 
+        require_once 'ConexaoBD.php';
 
-                                                    //------CarregarUsuário------//
-public function carregarUsuario($cpf) {
-    require_once 'ConexaoBD.php';
         $con = new ConexaoBD();
         $conn = $con->conectar();
-    if ($conn->connect_error) 
+        if ($conn->connect_error)
         {
             die("Connection failed: " . $conn->connect_error);
         }
-            $sql = "SELECT * FROM usuario WHERE cpf = ".$cpf ;
-            $re = $conn->query($sql);
-            $r = $re->fetch_object();
-    if($r != null)
+        $sql = "INSERT INTO usuario (nome, cpf, email, senha) VALUES ('" . $this->nome . "', '" . $this->cpf . "', '" . $this->email . "','" . $this->senha . "')";
+        if ($conn->query($sql) === true)
+        {
+            $this->id = mysqli_insert_id($conn);
+            $conn->close();
+            return true;
+
+        }
+        else
+        {
+            $conn->close();
+            return false;
+        }
+    }
+
+    public function carregarUsuario($email)
+    {
+        require_once 'ConexaoBD.php';
+
+        $con = new ConexaoBD();
+        $conn = $con->conectar();
+        if ($conn->connect_error)
+        {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT * FROM usuario WHERE email = '$email'";
+        $re = $conn->query($sql);
+        $r = $re->fetch_object();
+        if ($r != null)
         {
             $this->id = $r->idusuario;
             $this->nome = $r->nome;
@@ -95,48 +111,89 @@ public function carregarUsuario($cpf) {
             $this->senha = $r->senha;
             $conn->close();
             return true;
-        } else
-            {
-                $conn->close();
-                return false;
-            }
-        } 
+        }
+        else
+        {
+            $conn->close();
+            return false;
+        }
+    }
 
-                                                            //------atualizarBD------//
-public function atualizarBD() {
-    require_once 'ConexaoBD.php';
+    public function atualizarBD()
+    {
+        require_once 'ConexaoBD.php';
         $con = new ConexaoBD();
         $conn = $con->conectar();
-    if ($conn->connect_error) 
+        if ($conn->connect_error)
         {
             die("Connection failed: " . $conn->connect_error);
         }
-            $sql = "UPDATE usuario SET nome = '".$this->nome."', cpf = '". $this->cpf."', dataNascimento = '". $this->dataNascimento."', email='".$this->email."' WHERE idusuario ='". $this->id. "'" ; if ($conn->query($sql) ===
-        TRUE) 
+
+        $sql = "UPDATE usuario SET nome = '" . $this->nome . "', cpf = '" . $this->cpf . "', dataNascimento = 
+'" . $this->dataNascimento . "',
+ email='" . $this->email . "' WHERE idusuario ='" . $this->id . "'";
+        if ($conn->query($sql) === true)
         {
             $conn->close();
-            return TRUE;
-        } else 
-        {
-            $conn->close();
-            return FALSE;
+            return true;
+
         }
-    } 
+        else
+        {
+            $conn->close();
+            return false;
+        }
+    }
+	
+	
+    public function listaCadastrados()
+    {
+        require_once 'ConexaoBD.php';
+
+        $con = new ConexaoBD();
+        $conn = $con->conectar();
+        if ($conn->connect_error)
+        {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $sql = "SELECT idusuario, nome FROM usuario;";
+        $re = $conn->query($sql);
+        $conn->close();
+        return $re;
+    }
 
 
 
-    //=========================LISTA CADASTRADOS=========================================//
-public function listaCadastrados() {
- require_once 'ConexaoBD.php';
- $con = new ConexaoBD();
- $conn = $con->conectar();
- if ($conn->connect_error) {
- die("Connection failed: " . $conn->connect_error);
- }
- $sql = "SELECT idusuario, nome FROM usuario;" ;
- $re = $conn->query($sql);
- $conn->close();
- return $re;
+    public function carregarPorID($id)
+{
+    require_once 'ConexaoBD.php';
+
+    $con = new ConexaoBD();
+    $conn = $con->conectar();
+
+    if ($conn->connect_error)
+    {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM usuario WHERE idusuario = '$id'";
+
+    $re = $conn->query($sql);
+
+    $r = $re->fetch_object();
+
+    if ($r != null)
+    {
+        $this->id = $r->idusuario;
+        $this->nome = $r->nome;
+        $this->cpf = $r->cpf;
+        $this->email = $r->email;
+        $this->dataNascimento = $r->dataNascimento;
+        $this->senha = $r->senha;
+    }
+
+    $conn->close();
 }
-} 
+}
+
 ?>

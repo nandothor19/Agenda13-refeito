@@ -46,4 +46,26 @@ else
 return false;
 }
 }
+
+//==============================================GERAR LISTA=========================================//
+public function gerarLista()
+{
+require_once '../Model/Administrador.php';
+$u = new Administrador();
+return $results = $u->listaCadastrados();
+}
+
+
+
+//==============================================VISUALIZAR CADASTRO=======================================//
+public function visualizarCadastro($id)
+{
+    require_once '../Model/Usuario.php';
+
+    $usuario = new Usuario();
+
+    $usuario->carregarPorID($id);
+
+    return $usuario;
+}
 }

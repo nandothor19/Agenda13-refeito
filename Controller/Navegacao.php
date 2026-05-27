@@ -174,18 +174,41 @@ case(isset($_POST["btnADM"])):
 break;
 
 //============================================ Tela ADM CADASTRADOS ======================================================//
+//====Usuários====//
 case(isset($_POST["btnListarCadastrados"])):
 {
 include_once '../View/ADMListarCadastrados.php';
 }
 break;
-
+//====ADMINISTRADORES====//
+case(isset($_POST["btnListarADM"])):
+{
+include_once '../View/ADMListarAdministradores.php';
+}
+break;
 
 //============================================= VOLTAR ADM ===================================================//
 case(isset($_POST["btnVoltar"])):
 {
+ include_once '../View/ADMLogin.php'; 
+} 
+break;
+
+
+
+//============================================VOLTAR ADM PRINCIPAL=================================================//
+case(isset($_POST["btnVoltarPrincipal"])):
+{
 include_once '../View/ADMPrincipal.php';
 } 
 break;
+
+//=============================================   ===========================================================//
+case(isset($_POST["btnVisualizar"])):
+{
+include_once '../View/ADMVisualizarCadastro.php';
+} 
+break;
+
 }
 ?>
